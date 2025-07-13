@@ -1,0 +1,29 @@
+[project]
+name = "comfyui-downloader"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Radiating Reverberations", email = "radiatingreverberations@proton.me" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "huggingface-hub>=0.33.4",
+]
+
+[project.scripts]
+comfyui-downloader = "comfyui_downloader:main"
+
+[build-system]
+requires = ["uv_build>=0.7.20,<0.8"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
