@@ -1,5 +1,6 @@
 from urllib.parse import urlparse
 
+
 def parse_hf_url(url):
     """
     Parse Hugging Face URLs of the form:

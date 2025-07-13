@@ -5,6 +5,7 @@ from huggingface_hub import hf_hub_download
 import requests
 from .hf_utils import parse_hf_url
 
+
 def download_models_from_json(json_file, output_dir="models", dry_run=False):
     os.makedirs(output_dir, exist_ok=True)
 
@@ -18,9 +19,9 @@ def download_models_from_json(json_file, output_dir="models", dry_run=False):
     for node in data.get("nodes", []):
         models = node.get("properties", {}).get("models", [])
         for m in models:
-            url       = m.get("url")
+            url = m.get("url")
             directory = m.get("directory", "")
-            name      = m.get("name")
+            name = m.get("name")
 
             target_dir = os.path.join(output_dir, directory)
             os.makedirs(target_dir, exist_ok=True)
@@ -45,7 +46,9 @@ def download_models_from_json(json_file, output_dir="models", dry_run=False):
                     parse_hf_url(url)
                     print(f"✔️  [dry-run] HF download: {name} → {dest_path}")
                 except Exception:
-                    print(f"✔️  [dry-run] HTTP download: {name} from {url} → {dest_path}")
+                    print(
+                        f"✔️  [dry-run] HTTP download: {name} from {url} → {dest_path}"
+                    )
                 continue
 
             # Try HF API download
@@ -55,7 +58,7 @@ def download_models_from_json(json_file, output_dir="models", dry_run=False):
                     repo_id=repo_id,
                     filename=file_path,
                     revision=revision,
-                    cache_dir=hf_cache_dir
+                    cache_dir=hf_cache_dir,
                 )
                 # try hard-link, then symlink, then copy
                 try:
