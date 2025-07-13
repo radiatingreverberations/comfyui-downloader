@@ -78,24 +78,3 @@ def download_models_from_json(json_file, output_dir="models", dry_run=False):
                     for chunk in resp.iter_content(chunk_size=8192):
                         out.write(chunk)
                 print(f"✔️  HTTP download done: {dest_path}")
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Download models listed in a JSON file."
-    )
-    parser.add_argument(
-        "json_file", help="Path to the JSON file containing model URLs."
-    )
-    parser.add_argument(
-        "-o", "--output-dir",
-        default="models",
-        help="Base directory where files will be saved."
-    )
-    parser.add_argument(
-        "-n", "--dry-run",
-        action="store_true",
-        help="Show which files would be downloaded and where, without downloading."
-    )
-    args = parser.parse_args()
-
-    download_models_from_json(args.json_file, args.output_dir, args.dry_run)
